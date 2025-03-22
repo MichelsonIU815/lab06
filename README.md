@@ -4,29 +4,29 @@ michel@MichelUbuntu:~$ cd ${GITHUB_USERNAME}/workspace
 michel@MichelUbuntu:~/MichelsonIU815/workspace$ pushd .
 ~/MichelsonIU815/workspace ~/MichelsonIU815/workspace
 michel@MichelUbuntu:~/MichelsonIU815/workspace$ source scripts/activate
-michel@MichelUbuntu:~/MichelsonIU815/workspace$ git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab05
-fatal: целевой путь «projects/lab05» уже существует и не является пустым каталогом.
-michel@MichelUbuntu:~/MichelsonIU815/workspace$ git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab05
-Клонирование в «projects/lab05»...
+michel@MichelUbuntu:~/MichelsonIU815/workspace$ git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab06
+fatal: целевой путь «projects/lab06» уже существует и не является пустым каталогом.
+michel@MichelUbuntu:~/MichelsonIU815/workspace$ git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab06
+Клонирование в «projects/lab06»...
 remote: Enumerating objects: 39, done.
 remote: Counting objects: 100% (39/39), done.
 remote: Compressing objects: 100% (27/27), done.
 remote: Total 39 (delta 10), reused 32 (delta 6), pack-reused 0 (from 0)
 Получение объектов: 100% (39/39), 10.74 КиБ | 268.00 КиБ/с, готово.
 Определение изменений: 100% (10/10), готово.
-michel@MichelUbuntu:~/MichelsonIU815/workspace$ cd projects/lab05
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git remote remove origin
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab05
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ mkdir third-party
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git submodule add https://github.com/google/googletest third-party/gtest
-Клонирование в «/home/michel/MichelsonIU815/workspace/projects/lab05/third-party/gtest»...
+michel@MichelUbuntu:~/MichelsonIU815/workspace$ cd projects/lab06
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git remote remove origin
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab06
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ mkdir third-party
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git submodule add https://github.com/google/googletest third-party/gtest
+Клонирование в «/home/michel/MichelsonIU815/workspace/projects/lab06/third-party/gtest»...
 remote: Enumerating objects: 27973, done.
 remote: Counting objects: 100% (165/165), done.
 remote: Compressing objects: 100% (112/112), done.
 remote: Total 27973 (delta 95), reused 59 (delta 49), pack-reused 27808 (from 5)
 Получение объектов: 100% (27973/27973), 13.92 МиБ | 3.85 МиБ/с, готово.
 Определение изменений: 100% (20700/20700), готово.
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cd third-party/gtest && git checkout release-1.8.1 && cd ../..
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cd third-party/gtest && git checkout release-1.8.1 && cd ../..
 Примечание: переключение на «release-1.8.1».
 
 Вы сейчас в состоянии «отсоединённого указателя HEAD». Можете осмотреться,
@@ -48,16 +48,16 @@ michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cd third-party/gt
 advice.detachedHead в значение false
 
 HEAD сейчас на 2fe3bd99 Merge pull request #1433 from dsacre/fix-clang-warnings
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git add third-party/gtest
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git commit -m"added gtest framework"
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git add third-party/gtest
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git commit -m"added gtest framework"
 [master ddd6d4f] added gtest framework
  2 files changed, 4 insertions(+)
  create mode 100644 .gitmodules
  create mode 160000 third-party/gtest
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
 > option(BUILD_TESTS "Build tests" OFF)
 > ' CMakeLists.txt
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cat >> CMakeLists.txt <<EOF
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cat >> CMakeLists.txt <<EOF
 > if(BUILD_TESTS)
   enable_testing()
   add_subdirectory(third-party/gtest)
@@ -67,8 +67,8 @@ michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cat >> CMakeLists
   add_test(NAME check COMMAND check)
 endif()
 > EOF
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ mkdir tests
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cat > tests/test1.cpp <<EOF
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ mkdir tests
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cat > tests/test1.cpp <<EOF
 > #include <print.hpp>
 
 #include <gtest/gtest.h>
@@ -89,7 +89,7 @@ TEST(Print, InFileStream)
   EXPECT_EQ(result, text);
 }
 > EOF
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cmake -H. -B_build -DBUILD_TESTS=ON
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cmake -H. -B_build -DBUILD_TESTS=ON
 CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 3.5 will be removed from a future version of
   CMake.
@@ -149,8 +149,8 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Found Threads: TRUE  
 -- Configuring done (0.4s)
 -- Generating done (0.0s)
--- Build files have been written to: /home/michel/MichelsonIU815/workspace/projects/lab05/_build
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cmake --build _build
+-- Build files have been written to: /home/michel/MichelsonIU815/workspace/projects/lab06/_build
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cmake --build _build
 [  8%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
 [ 16%] Linking CXX static library libprint.a
 [ 16%] Built target print
@@ -169,17 +169,17 @@ michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cmake --build _bu
 [ 91%] Building CXX object third-party/gtest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
 [100%] Linking CXX static library libgmock_main.a
 [100%] Built target gmock_main
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cmake --build _build --target test
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cmake --build _build --target test
 Running tests...
-Test project /home/michel/MichelsonIU815/workspace/projects/lab05/_build
+Test project /home/michel/MichelsonIU815/workspace/projects/lab06/_build
     Start 1: check
 1/1 Test #1: check ............................   Passed    0.00 sec
 
 100% tests passed, 0 tests failed out of 1
 
 Total Test time (real) =   0.00 sec
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ _build/check
-Running main() from /home/michel/MichelsonIU815/workspace/projects/lab05/third-party/gtest/googletest/src/gtest_main.cc
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ _build/check
+Running main() from /home/michel/MichelsonIU815/workspace/projects/lab06/third-party/gtest/googletest/src/gtest_main.cc
 [==========] Running 1 test from 1 test case.
 [----------] Global test environment set-up.
 [----------] 1 test from Print
@@ -190,11 +190,11 @@ Running main() from /home/michel/MichelsonIU815/workspace/projects/lab05/third-p
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test case ran. (0 ms total)
 [  PASSED  ] 1 test.
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ cmake --build _build --target test -- ARGS=--verbose
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ cmake --build _build --target test -- ARGS=--verbose
 Running tests...
-UpdateCTestConfiguration  from :/home/michel/MichelsonIU815/workspace/projects/lab05/_build/DartConfiguration.tcl
-UpdateCTestConfiguration  from :/home/michel/MichelsonIU815/workspace/projects/lab05/_build/DartConfiguration.tcl
-Test project /home/michel/MichelsonIU815/workspace/projects/lab05/_build
+UpdateCTestConfiguration  from :/home/michel/MichelsonIU815/workspace/projects/lab06/_build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/home/michel/MichelsonIU815/workspace/projects/lab06/_build/DartConfiguration.tcl
+Test project /home/michel/MichelsonIU815/workspace/projects/lab06/_build
 Constructing a list of tests
 Done constructing a list of tests
 Updating test list for fixtures
@@ -204,10 +204,10 @@ Checking test dependency graph end
 test 1
     Start 1: check
 
-1: Test command: /home/michel/MichelsonIU815/workspace/projects/lab05/_build/check
-1: Working Directory: /home/michel/MichelsonIU815/workspace/projects/lab05/_build
+1: Test command: /home/michel/MichelsonIU815/workspace/projects/lab06/_build/check
+1: Working Directory: /home/michel/MichelsonIU815/workspace/projects/lab06/_build
 1: Test timeout computed to be: 10000000
-1: Running main() from /home/michel/MichelsonIU815/workspace/projects/lab05/third-party/gtest/googletest/src/gtest_main.cc
+1: Running main() from /home/michel/MichelsonIU815/workspace/projects/lab06/third-party/gtest/googletest/src/gtest_main.cc
 1: [==========] Running 1 test from 1 test case.
 1: [----------] Global test environment set-up.
 1: [----------] 1 test from Print
@@ -223,14 +223,14 @@ test 1
 100% tests passed, 0 tests failed out of 1
 
 Total Test time (real) =   0.00 sec
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ gsed -i 's/lab04/lab05/g' README.md
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ gsed -i '/cmake --build _build --target install/a\
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ gsed -i 's/lab04/lab06/g' README.md
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ gsed -i '/cmake --build _build --target install/a\
 > - cmake --build _build --target test -- ARGS=--verbose
 > ' .travis.yml
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git add .travis.yml
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git add tests
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$  git add -p
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git add .travis.yml
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git add tests
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$  git add -p
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 96a361e..89739e7 100644
 --- a/CMakeLists.txt
@@ -258,11 +258,11 @@ index 96a361e..89739e7 100644
 +endif()
 (2/2) Индексировать этот блок [y,n,q,a,d,K,g,/,e,?]? y
 
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git commit -m"added tests"
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git commit -m"added tests"
 [master 0f8f992] added tests
  3 files changed, 30 insertions(+), 1 deletion(-)
  create mode 100644 tests/test1.cpp
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git push origin master
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git push origin master
 Username for 'https://github.com': MichelsonIU815
 Password for 'https://MichelsonIU815@github.com': 
 Перечисление объектов: 49, готово.
@@ -291,15 +291,15 @@ remote:          - commit: 3dbefd07df45839aa845f4053ff6222de4a836ba
 remote:            path: README.md:2
 remote:     
 remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/MichelsonIU815/lab05/security/secret-scanning/unblock-secret/2ugMFxXXTUeMFGgLHTdNOxRPzWP
+remote:        https://github.com/MichelsonIU815/lab06/security/secret-scanning/unblock-secret/2ugMFxXXTUeMFGgLHTdNOxRPzWP
 remote:     
 remote: 
 remote: 
-To https://github.com/MichelsonIU815/lab05
+To https://github.com/MichelsonIU815/lab06
  ! [remote rejected] master -> master (push declined due to repository rule violations)
-error: не удалось отправить некоторые ссылки в «https://github.com/MichelsonIU815/lab05»
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ ^C
-michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab05$ git push origin master
+error: не удалось отправить некоторые ссылки в «https://github.com/MichelsonIU815/lab06»
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ ^C
+michel@MichelUbuntu:~/MichelsonIU815/workspace/projects/lab06$ git push origin master
 Username for 'https://github.com': MichelsonIU815
 Password for 'https://MichelsonIU815@github.com': 
 Перечисление объектов: 49, готово.
@@ -311,7 +311,7 @@ Password for 'https://MichelsonIU815@github.com':
 remote: Resolving deltas: 100% (14/14), done.
 remote: 
 remote: Create a pull request for 'master' on GitHub by visiting:
-remote:      https://github.com/MichelsonIU815/lab05/pull/new/master
+remote:      https://github.com/MichelsonIU815/lab06/pull/new/master
 remote: 
-To https://github.com/MichelsonIU815/lab05
+To https://github.com/MichelsonIU815/lab06
  * [new branch]      master -> master
